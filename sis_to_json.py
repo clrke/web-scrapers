@@ -39,4 +39,30 @@ for tr in soup.find_all("tr", recursive=False):
 			pass
 
 with open(output_path, 'w') as file_output:
-	file_output.write(json.dumps(subjects, indent=2))
+	first = True
+	file_output.write("[\n")
+	for subject in subjects:
+
+		for key, value in subject.items():
+			subject[key] = re.sub(r'\n *', ' ', value)
+
+		if first:
+			file_output.write("\t{\n")
+		else:
+			file_output.write(",\n\t{\n")
+
+		file_output.write('\t\t"%s": "%s",\n' % ('code', subject['code']))
+		file_output.write('\t\t"%s": "%s",\n' % ('description', subject['description']))
+		file_output.write('\t\t"%s": "%s",\n' % ('section', subject['section']))
+		file_output.write('\t\t"%s": "%s",\n' % ('lec', subject['lec']))
+		file_output.write('\t\t"%s": "%s",\n' % ('lab', subject['lab']))
+		file_output.write('\t\t"%s": "%s",\n' % ('lec', subject['lec']))
+		file_output.write('\t\t"%s": "%s"\n' % ('schedule', subject['schedule']))
+
+		if first:
+			file_output.write("\t}")
+			first = False
+		else:
+			file_output.write("\t}")
+
+	file_output.write("\n]\n")
