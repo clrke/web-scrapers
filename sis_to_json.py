@@ -56,7 +56,7 @@ with open(output_path, 'w') as file_output:
 		file_output.write('\t\t"%s": "%s",\n' % ('section', subject['section']))
 		file_output.write('\t\t"%s": "%s",\n' % ('lec', subject['lec']))
 		file_output.write('\t\t"%s": "%s",\n' % ('lab', subject['lab']))
-		file_output.write('\t\t"%s": "%s",\n' % ('lec', subject['lec']))
+		file_output.write('\t\t"%s": "%s",\n' % ('units', subject['units']))
 		file_output.write('\t\t"%s": "%s"\n' % ('schedule', subject['schedule']))
 
 		if first:
